@@ -2,17 +2,48 @@
 #include <stdlib.h>
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
-
-char *proverb = "All that glisters is not gold.";
-void setPointer(char **q) 
+int addfunc(int a, int b)
 {
-    *q = proverb; 
-} 
+	return a+b;
+}
+int subfunc(int a, int b)
+{
+	return a-b;
+}
+int mulfunc(int a, int b)
+{
+	return a*b;
+}
+int divfunc(int a, int b)
+{
+	return a/b;
+}
+
 int main(int argc, char *argv[]) {
 	
-	char *p = "zzz";
-	setPointer(&p);
-	printf("%s\n", p); 
+	int num1, num2;
+	char op;
+	int (*calfunc)(int,int);
 	
+	printf("input calculation : ");
+	scanf("%d %c %d", &num1, &op, &num2);
+	
+	switch(op)
+	{
+		case '+':
+		    calfunc = addfunc;
+		    break;
+		case '-':
+			calfunc = subfunc;
+			break;
+		case '*':
+			calfunc = mulfunc;
+			break;
+		case '/':
+			calfunc = divfunc;
+			break;	
+	}
+	
+	printf("result : %i\n", calfunc(num1,num2));
 	return 0;
 }
